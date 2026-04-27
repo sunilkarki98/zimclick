@@ -51,9 +51,6 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// CORS — restrict to frontend origin in production
-const allowedOrigins = (process.env.CLIENT_URLS || process.env.CLIENT_URL)?.split(",") || ["http://localhost:3000", "http://localhost:3001"];
-
 app.use(
   cors({
     origin: true,
