@@ -56,15 +56,7 @@ const allowedOrigins = (process.env.CLIENT_URLS || process.env.CLIENT_URL)?.spli
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      const cleanOrigin = origin.replace(/\/$/, "");
-      const isAllowed = allowedOrigins.some(o => cleanOrigin === o.trim().replace(/\/$/, ""));
-      if (isAllowed) {
-        return callback(null, true);
-      }
-      return callback(new Error("Not allowed by CORS"));
-    },
+    origin: true,
     credentials: true,
   })
 );
