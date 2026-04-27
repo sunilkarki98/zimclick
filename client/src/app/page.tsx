@@ -56,7 +56,7 @@ export default function ModernStorefront() {
             The Ultimate <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-orange-400">Global Sports Marketplace</span>
           </h1>
           <p className="mt-4 text-xl sm:text-2xl text-gray-300 max-w-3xl font-light mb-10">
-            Equip your passion and elevate your game with world-class sporting goods—from premium soccer boots to elite cricket gear. Shop the gear that fuels champions.
+            Equip your passion and elevate your game with world class sporting goods from premium soccer boots to elite cricket gear. Shop the gear that fuels champions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link href="#products" className="px-8 py-4 bg-white text-black text-lg font-bold rounded-full hover:bg-gray-100 hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]">
@@ -77,19 +77,19 @@ export default function ModernStorefront() {
             {CATEGORIES
               .slice(0, showAllCategories ? undefined : MOBILE_CAT_LIMIT)
               .map(({ cat, Icon }, i) => (
-              <Link href={`/category/${cat.toLowerCase().replace(/ /g, '-')}`} key={i} className="group overflow-hidden rounded-xl cursor-pointer shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 bg-white flex flex-col items-center justify-center py-4 px-2">
-                <div className="h-9 w-9 mb-2 rounded-full bg-brand-50 text-brand flex items-center justify-center group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <h3 className="text-xs font-bold text-gray-900 tracking-tight text-center group-hover:text-pop transition-colors leading-tight">{cat}</h3>
-              </Link>
-            ))}
+                <Link href={`/category/${cat.toLowerCase().replace(/ /g, '-')}`} key={i} className="group overflow-hidden rounded-xl cursor-pointer shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 bg-white flex flex-col items-center justify-center py-4 px-2">
+                  <div className="h-9 w-9 mb-2 rounded-full bg-brand-50 text-brand flex items-center justify-center group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-xs font-bold text-gray-900 tracking-tight text-center group-hover:text-pop transition-colors leading-tight">{cat}</h3>
+                </Link>
+              ))}
           </div>
           {/* Show "View All" on smaller screens when categories are truncated */}
           {!showAllCategories && (
             <div className="text-center mt-5 lg:hidden">
-              <button 
-                onClick={() => setShowAllCategories(true)} 
+              <button
+                onClick={() => setShowAllCategories(true)}
                 className="text-sm font-bold text-brand hover:text-brand-dark transition"
               >
                 View All Categories &rarr;
