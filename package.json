@@ -1,0 +1,10 @@
+{
+  "name": "zimclick-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npx ts-node src/index.ts",
+    "install:all": "cd client && npm install && cd ../server && npm install"
+  }
+}

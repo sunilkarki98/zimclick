@@ -1,0 +1,44 @@
+{
+  "name": "zimclick-server",
+  "version": "1.0.0",
+  "description": "Express API backend for ZimClick gym store",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "dev": "npx ts-node src/index.ts",
+    "build": "npx tsc",
+    "start": "node dist/src/index.js",
+    "db:seed": "ts-node prisma/seed.ts",
+    "db:generate": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:migrate": "npx prisma migrate dev",
+    "db:studio": "npx prisma studio",
+    "postinstall": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "@supabase/supabase-js": "^2.99.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.4.1",
+    "helmet": "^8.1.0",
+    "pg": "^8.20.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "@types/pg": "^8.20.0",
+    "prisma": "^7.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

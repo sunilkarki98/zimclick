@@ -1,0 +1,205 @@
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+  output     = "../src/generated/client"
+}
+
+// ---------- ENUMS ----------
+enum UserRole {
+  customer
+  vendor
+  admin
+}
+
+enum OrderStatus {
+  pending
+  paid
+  shipped
+  delivered
+  cancelled
+}
+
+enum SubOrderStatus {
+  pending
+  confirmed
+  shipped
+  delivered
+  cancelled
+}
+
+// ---------- USER ----------
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  role      UserRole @default(customer)
+  vendor    Vendor?
+  carts     Cart[]
+  orders    Order[]
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------- VENDOR ----------
+model Vendor {
+  id          String     @id @default(uuid())
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String     @unique
+  storeName   String
+  description String?
+  logo        String?
+  isActive    Boolean    @default(true)
+  products    Product[]
+  subOrders   SubOrder[]
+  deletedAt   DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// ---------- CATEGORY & TAGS ----------
+model Category {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  slug      String     @unique
+  parentId  String?
+  parent    Category?  @relation("SubCategories", fields: [parentId], references: [id])
+  children  Category[] @relation("SubCategories")
+  products  Product[]  
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([parentId])
+  @@index([slug])
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  slug      String    @unique
+  products  Product[] 
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+// ---------- PRODUCT ----------
+model Product {
+  id          String      @id @default(uuid())
+  name        String
+  price       Float
+  brand       String
+  stock       Int
+  description String?
+  
+  // SCALABLE ATTRIBUTES
+  images      String[]    // Array of image URIs natively in Postgres
+  attributes  Json?       // Dynamic kv pairs {"size": "L", "color": "RED", "material": "cotton"}
+  weight      Float?
+
+  // MANY TO MANY RELATIONS
+  categories  Category[]
+  tags        Tag[]
+
+  vendor      Vendor      @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  vendorId    String
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+  deletedAt   DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([vendorId])
+}
+
+// ---------- CART ----------
+model Cart {
+  id        String     @id @default(uuid())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String     @unique  // One cart per user
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+// ---------- CART ITEM ----------
+model CartItem {
+  id        String   @id @default(uuid())
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  quantity  Int
+  
+  // User variant selections
+  selectedAttributes Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([cartId])
+  @@index([productId])
+}
+
+// ---------- ORDER ----------
+model Order {
+  id            String      @id @default(uuid())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  items         OrderItem[]
+  subOrders     SubOrder[]
+  total         Float
+  status        OrderStatus @default(pending)
+  paymentStatus String?
+  paymentId     String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([userId])
+}
+
+// ---------- SUB ORDER (per-vendor split) ----------
+model SubOrder {
+  id        String         @id @default(uuid())
+  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  vendor    Vendor         @relation(fields: [vendorId], references: [id])
+  vendorId  String
+  items     OrderItem[]
+  subtotal  Float
+  status    SubOrderStatus @default(pending)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@index([orderId])
+  @@index([vendorId])
+}
+
+// ---------- ORDER ITEM ----------
+model OrderItem {
+  id         String    @id @default(uuid())
+  order      Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId    String
+  subOrder   SubOrder? @relation(fields: [subOrderId], references: [id], onDelete: SetNull)
+  subOrderId String?
+  product    Product   @relation(fields: [productId], references: [id])
+  productId  String
+  quantity   Int
+  price      Float
+
+  // User variant selections frozen at checkout
+  selectedAttributes Json?
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([orderId])
+  @@index([subOrderId])
+  @@index([productId])
+}
