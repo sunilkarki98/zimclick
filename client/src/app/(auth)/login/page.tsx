@@ -23,6 +23,7 @@ function AuthForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { refreshUser } = useAuth();
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (mode === "register") {
@@ -36,6 +37,7 @@ function AuthForm() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccessMessage("");
 
     try {
       if (isLogin) {
@@ -58,15 +60,12 @@ function AuthForm() {
         const res = await api.post<any>("/auth/register", { name, email, password });
         if (res.error) throw new Error(res.error);
         
-        if (res.session) {
-          await supabase.auth.setSession({ 
-            access_token: res.session.access_token, 
-            refresh_token: res.session.refresh_token 
-          });
-        }
-        
-        await refreshUser();
-        router.push("/");
+        // Don't auto-login — ask the user to confirm their email first
+        setSuccessMessage("Account created! Please check your email to confirm your account, then log in.");
+        setIsLogin(true);
+        setName("");
+        setEmail("");
+        setPassword("");
       }
     } catch (err: any) {
       setError(err.message || "Authentication failed. Please check your credentials.");
@@ -98,6 +97,15 @@ function AuthForm() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-10 px-4 shadow-2xl sm:rounded-3xl sm:px-10 border border-gray-100">
           
+          {successMessage && (
+            <div className="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <p className="text-sm font-bold text-green-700">{successMessage}</p>
+              </div>
+            </div>
+          )}
+
           {error && (
             <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
               <p className="text-sm font-bold text-red-700">{error}</p>

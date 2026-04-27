@@ -17,7 +17,7 @@ const selectTotalQuantity = createSelector(
 );
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, loading, logout } = useAuth();
   const totalQuantity = useSelector(selectTotalQuantity);
   const pathname = usePathname();
 
@@ -97,7 +97,9 @@ export default function Navbar() {
             <div className="h-6 w-px bg-gray-200 hidden sm:block"></div>
 
             {/* Auth State */}
-            {user ? (
+            {loading ? (
+              <div className="h-9 w-9 bg-gray-100 rounded-full animate-pulse border border-gray-200"></div>
+            ) : user ? (
               <div className="relative group cursor-pointer flex items-center gap-2">
                 <div className="h-9 w-9 bg-gray-100 rounded-full flex items-center justify-center text-sm font-bold text-gray-700 hover:bg-gray-200 transition border border-gray-200">
                   {user.name.charAt(0).toUpperCase()}
@@ -146,7 +148,7 @@ export default function Navbar() {
               {user && (
                 <Link href="/customer/orders" className="block px-4 py-3 text-base font-semibold text-brand-dark hover:bg-brand-50 hover:text-pop rounded-xl transition">My Dashboard</Link>
               )}
-              {!user && (
+              {!loading && !user && (
                 <div className="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2">
                   <Link href="/login" className="block px-4 py-3 text-base font-semibold text-brand-dark hover:bg-brand-50 rounded-xl transition text-center">Log in</Link>
                   <Link href="/login?mode=register" className="block px-4 py-3 text-base font-bold text-white bg-brand rounded-xl text-center hover:opacity-90 transition">Sign up</Link>
