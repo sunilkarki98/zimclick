@@ -81,7 +81,7 @@ function AuthForm() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center transform hover:rotate-12 transition shadow-xl p-3 border border-gray-100">
-             <Image src="/logo/zimclick_logo.png" alt="Zimclick Logo" width={64} height={64} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
+             <Image src="/logo/gymclick_logo.png" alt="Gymclick Logo" width={64} height={64} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-black text-gray-900 tracking-tight">

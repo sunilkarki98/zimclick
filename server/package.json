@@ -1,7 +1,7 @@
 {
-  "name": "zimclick-server",
+  "name": "gymclick-server",
   "version": "1.0.0",
-  "description": "Express API backend for ZimClick gym store",
+  "description": "Express API backend for GymClick gym store",
   "main": "dist/src/index.js",
   "scripts": {
     "dev": "npx ts-node src/index.ts",

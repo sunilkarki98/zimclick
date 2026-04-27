@@ -64,7 +64,7 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
         <div className="mb-8">
           <Link href="/customer/orders" className="flex items-center gap-3">
             <div className="bg-white rounded-lg p-1.5 flex items-center justify-center">
-              <Image src="/logo/zimclick_logo.png" alt="Zimclick Logo" width={28} height={28} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
+              <Image src="/logo/gymclick_logo.png" alt="Gymclick Logo" width={28} height={28} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
             </div>
             <span className="text-2xl font-bold tracking-tight text-white">My Account</span>
           </Link>
@@ -90,7 +90,7 @@ export default function CustomerLayout({ children }: { children: React.ReactNode
             <div className="flex items-center justify-between mb-8">
               <Link href="/customer/orders" className="flex items-center gap-3">
                 <div className="bg-white rounded-lg p-1.5 flex items-center justify-center">
-                  <Image src="/logo/zimclick_logo.png" alt="Zimclick Logo" width={24} height={24} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
+                  <Image src="/logo/gymclick_logo.png" alt="Gymclick Logo" width={24} height={24} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
                 </div>
                 <span className="text-xl font-bold tracking-tight text-white">My Account</span>
               </Link>

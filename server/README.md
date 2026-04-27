@@ -1,6 +1,6 @@
-# Zimclick Server (Backend)
+# Gymclick Server (Backend)
 
-This is the Express & Prisma backend powering the Zimclick Sports Marketplace. It handles users, multi-vendor functionality, products, orders, and authentication synchronization with Supabase.
+This is the Express & Prisma backend powering the Gymclick Sports Marketplace. It handles users, multi-vendor functionality, products, orders, and authentication synchronization with Supabase.
 
 ## Architecture
 

@@ -10,12 +10,12 @@ async function main() {
   await prisma.vendor.deleteMany({});
   await prisma.user.deleteMany({}); // wipe test users
 
-  console.log("Creating Official Zimclick Vendor...");
+  console.log("Creating Official Gymclick Vendor...");
   
   const adminUser = await prisma.user.create({
     data: {
-      email: "admin@zimclick.com",
-      name: "Zimclick Administrator",
+      email: "admin@gymclick.com",
+      name: "Gymclick Administrator",
       role: "admin"
     }
   });
@@ -23,7 +23,7 @@ async function main() {
   const officialVendor = await prisma.vendor.create({
     data: {
       userId: adminUser.id,
-      storeName: "Zimclick Global Athletics",
+      storeName: "Gymclick Global Athletics",
       description: "Official distributor of world-class sporting equipment.",
       isActive: true,
     }

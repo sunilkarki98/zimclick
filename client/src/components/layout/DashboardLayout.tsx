@@ -89,7 +89,7 @@ export default function DashboardLayout({
       <div className={isMobile ? "flex items-center justify-between mb-6" : "p-6 mb-2"}>
         <Link href={navItems[0]?.href || "/"} className="flex items-center gap-3 group">
           <div className={`rounded-lg p-1.5 flex items-center justify-center ${logoBgClasses}`}>
-            <Image src="/logo/zimclick_logo.png" alt="Zimclick Logo" width={isMobile ? 24 : 28} height={isMobile ? 24 : 28} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
+            <Image src="/logo/gymclick_logo.png" alt="Gymclick Logo" width={isMobile ? 24 : 28} height={isMobile ? 24 : 28} className="object-contain" style={{ width: 'auto', height: 'auto' }} />
           </div>
           <h2 className={titleClasses}>{title}</h2>
         </Link>

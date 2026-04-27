@@ -56,8 +56,8 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="bg-white rounded-xl p-1.5 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform border border-gray-100">
               <Image 
-                src="/logo/zimclick_logo.png" 
-                alt="Zimclick Logo" 
+                src="/logo/gymclick_logo.png" 
+                alt="Gymclick Logo" 
                 width={32} 
                 height={32} 
                 className="object-contain"
@@ -66,7 +66,7 @@ export default function Navbar() {
               />
             </div>
             <span className="text-2xl font-extrabold tracking-tight text-brand-dark group-hover:text-pop transition-colors">
-              Zimclick
+              Gymclick
             </span>
           </Link>
 

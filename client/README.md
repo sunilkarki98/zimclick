@@ -1,6 +1,6 @@
-# Zimclick Client (Frontend)
+# Gymclick Client (Frontend)
 
-This is the Next.js frontend for the Zimclick Sports Marketplace. It interacts seamlessly with the Express/Prisma backend and uses Redux Toolkit for robust global state management.
+This is the Next.js frontend for the Gymclick Sports Marketplace. It interacts seamlessly with the Express/Prisma backend and uses Redux Toolkit for robust global state management.
 
 ## Architecture & Tech Stack
 

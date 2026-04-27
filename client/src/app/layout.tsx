@@ -3,8 +3,8 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Zimclick — The Ultimate Global Sports Marketplace",
-  description: "Shop world-class sporting goods from premium soccer boots to elite cricket gear. Equip your passion and elevate your game with Zimclick.",
+  title: "Gymclick — The Ultimate Global Sports Marketplace",
+  description: "Shop world-class sporting goods from premium soccer boots to elite cricket gear. Equip your passion and elevate your game with Gymclick.",
 };
 
 import { AuthProvider } from "@/components/providers/AuthProvider";

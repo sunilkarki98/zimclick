@@ -20,8 +20,8 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-4 group">
               <div className="bg-white rounded-lg p-1.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-all">
                 <Image 
-                  src="/logo/zimclick_logo.png" 
-                  alt="Zimclick Logo" 
+                  src="/logo/gymclick_logo.png" 
+                  alt="Gymclick Logo" 
                   width={32} 
                   height={32} 
                   className="object-contain"
@@ -29,7 +29,7 @@ export default function Footer() {
                 />
               </div>
               <span className="text-xl font-bold tracking-tight text-white group-hover:text-pop transition-colors">
-                Zimclick
+                Gymclick
               </span>
             </Link>
             <p className="text-brand-light/70 text-sm leading-relaxed mb-6">
@@ -67,7 +67,7 @@ export default function Footer() {
         
         <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/60 text-sm">
-            &copy; {new Date().getFullYear()} Zimclick, Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Gymclick, Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-sm text-white/60 hover:text-pop transition">Privacy Policy</Link>

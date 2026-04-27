@@ -45,7 +45,7 @@ export default function AdminDashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Platform Overview</h1>
-        <p className="text-gray-500 mt-1">Real-time analytics and system health for Zimclick.</p>
+        <p className="text-gray-500 mt-1">Real-time analytics and system health for Gymclick.</p>
       </div>
 
       {/* Stat Cards */}
